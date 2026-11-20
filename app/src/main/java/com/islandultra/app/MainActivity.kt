@@ -8,13 +8,12 @@ import android.provider.Settings
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Activity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // نصنع واجهة بسيطة برمجياً (بدون ملفات تصميم معقدة)
         val layout = LinearLayout(this)
         layout.orientation = LinearLayout.VERTICAL
         layout.setPadding(50, 150, 50, 50)
@@ -27,12 +26,10 @@ class MainActivity : AppCompatActivity() {
         val btnStart = Button(this)
         btnStart.text = "تشغيل الجزيرة 🚀"
         btnStart.setOnClickListener {
-            // نطلب إذن الظهور فوق التطبيقات أولاً
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
                 val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:$packageName"))
                 startActivity(intent)
             } else {
-                // إذا الإذن موجود، نشغل الخدمة
                 startIslandService()
             }
         }
@@ -41,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(layout)
     }
 
-    // دالة تشغيل الجزيرة
     private fun startIslandService() {
         val serviceIntent = Intent(this, IslandService::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

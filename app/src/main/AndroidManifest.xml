@@ -2,16 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.islandultra.app">
 
-    <!-- أذونات مهمة جداً عشان تظهر الجزيرة فوق التطبيقات -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Island Ultra"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:label="Island Ultra">
         
         <activity
             android:name=".MainActivity"
@@ -22,7 +19,6 @@
             </intent-filter>
         </activity>
 
-        <!-- الخدمة اللي تشتغل في الخلفية وتتحكم بالجزيرة -->
         <service
             android:name=".IslandService"
             android:foregroundServiceType="specialUse"
